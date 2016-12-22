@@ -1,3 +1,3 @@
-# Learn code by making games.
+## Learn code by making Games.
 
-### Game developing using unity motor and C#
+Game developing using Unity motor and C#
