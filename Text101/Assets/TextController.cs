@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class TextController : MonoBehaviour {
 	
 	public Text myText;
-	public enum Status {locked_cell, bed, b_sleep, b_sleep_1, window, mirror, library, l_guard, l_book, l_key, l_help_guard, freedom};
+	public enum Status {locked_cell, bed, b_sleep, b_sleep_1, window, mirror, library, l_book, l_key, l_help_guard, freedom};
 	
 	public Status currentStatus;
 	public bool key_on_book = false;
@@ -44,8 +44,11 @@ public class TextController : MonoBehaviour {
 			case Status.l_key:
 				state_key_action();
 				break;
-			case Status.l_guard:
+			case Status.l_help_guard:
 				state_help_guard_action();
+				break;
+			case Status.freedom:
+				state_freedom();
 				break;
 		}
 	}
@@ -102,16 +105,16 @@ public class TextController : MonoBehaviour {
 	}
 	
 	void state_mirror_action(){
-		myText.text = "You look at yourself at the mirror. The beard is longer than you have ever kept it.\n" +
-					  "Like a lumberjack beard, the slyte is definitly remarkable." +
+		myText.text = "You look at yourself trough the mirror.\n\nThe beard is longer than you have ever kept it.\n" +
+					  "Like a lumberjack beard, the style is definitely remarkable.\n\n" +
 					  "Press 'ENTER' to return roaming in your cell";
 		if(Input.GetKeyDown(KeyCode.Return))
 			currentStatus = Status.locked_cell;						  	
 	}
 	
 	void state_window_action(){
-		myText.text = "You look trough the windown. Holding the bars with your hands.\n" +
-			"The view is ugly. There is nothing but guards, iron and concrete.\n" +
+		myText.text = "You look trough the windown holding the bars with your hands.\n\n" +
+				"The view is ugly.\n There is nothing but guards, iron and concrete.\n" +
 				"\nYou miss the nature!" +
 				"\n\nPress ENTER to continue";
 		
@@ -119,12 +122,22 @@ public class TextController : MonoBehaviour {
 			currentStatus = Status.locked_cell;	
 	}
 	void state_library_action(){
-		myText.text = "After reading 'Thus spoke Zarastrusta', the unique book as it is, you request another great book.\n\n" +
-					  "Since Bruce, the guard, is a ambicious reader, just like you,\n he decides to take you to the library, in order to find a new book to read.\n" +
-					  "It is against the rules. But you are the most calm inmate on there, and the prison also has many other guards. It is impossible to break trough." +
-					  "\n\nPress ENTER to continue";
-		if(Input.GetKeyDown(KeyCode.Return))
-			currentStatus = Status.l_book;
+		if (key_on_book == false){
+			myText.text = "After reading 'Thus spoke Zarastrusta', the unique book as it is, you request another great book.\n\n" +
+						  "Since Bruce, the guard, is a ambicious reader, just like you,\n he decides to take you to the library, in order to find a new book to read.\n" +
+						  "It is against the rules. But you are the most calm inmate on there, and the prison also has many other guards. It is impossible to break trough." +
+						  "\n\nPress ENTER to continue";
+			if(Input.GetKeyDown(KeyCode.Return))
+				currentStatus = Status.l_book;
+		}
+		else if (key_on_book == true){
+			myText.text = "FREEDOM\n\n PRESS ENTER TO CONTINUE";
+			if(Input.GetKeyDown(KeyCode.Return))
+				currentStatus = Status.freedom;
+				
+			//TODO --> INVENT WAY TO GET BOOK 
+			//			 			AND THEN CONTINUE STORY LINE
+		}
 	}
 	
 	void state_book_action(){
@@ -162,8 +175,8 @@ public class TextController : MonoBehaviour {
 		}
 		
 		else{
-			myText.text = "You have helped the guard, and after much explanations, your routine go back as normal.\nYou failed to ESCAPE by making good moral choices"+
-				"\n\n Press ENTER to return to your cell";
+			myText.text = "You've helped the guard.\n\n After much explanations, the routine go back as usual.\n\nYou FAILED to escape the prison by making good moral choices!!"+
+				"\n\n Press ENTER to return to your cell and try it again.";
 		}
 		
 		if(Input.GetKeyDown(KeyCode.Return)){
@@ -172,7 +185,7 @@ public class TextController : MonoBehaviour {
 	}
 	
 	void state_freedom(){
-		myText.text = "";
+		myText.text = "YOu use the key and find freedom congrats";
 	}
 	
 }
