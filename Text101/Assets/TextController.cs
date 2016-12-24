@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class TextController : MonoBehaviour {
 	
 	public Text myText;
-	public enum Status {cell_0, bed, b_lay, b_sleep, window, mirror, library, l_guard, l_book, l_key, freedom};
+	public enum Status {locked_cell, bed, b_sleep, window, mirror, library, l_guard, l_book, l_key, freedom};
 	
 	public Status currentStatus;
 	
@@ -16,19 +16,22 @@ public class TextController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		switch(currentStatus){
-			case Status.cell_0:
+			case Status.locked_cell:
 				state_cell();
-				break;
-			case Status.window:
-				state_window_action();
 				break;
 			case Status.bed:
 				state_bed_action();
 				break;
-			case Status.mirror():
+			case Status.b_sleep:
+				state_bed_sleep_action();
+				break;
+			case Status.window:
+				state_window_action();
+				break;
+			case Status.mirror:
 				state_mirror_action();
 				break;
-			case Status.library();
+			case Status.library():
 				state_library_action();
 				break;
 			case Status.l_book:
@@ -44,7 +47,7 @@ public class TextController : MonoBehaviour {
 	}
 	
 	void state_cell(){
-		currentStatus = Status.cell_0;			  
+		currentStatus = Status.locked_cell;			  
 		
 		myText.text = "You are locked in your cell. Reading and thinking about freedom are the only thing that keeps you alive.\n" +
 					  "After a couple of years, you and the guards have quite a good relashionship.\n" +
@@ -63,53 +66,37 @@ public class TextController : MonoBehaviour {
 			currentStatus = Status.library;
 	}
 	
-	void state_talk_bruce(){
-		myText.text = "You two are not the best friends.\n But the partnership is unavoidable.\n\n" + 
-				  	  "You ask about some book recomendations.\n"+
-					  "Bruce recommends his favorite, 'Thus Spoke Zarasthustra'.\n" +
-					  "You thank him and return to your confort." +
-		   		  	  "\n\nPress ENTER to continue";
-		state_cell();
-	}
-	
-	void state_look_window(){
+	void state_window_action(){
 		myText.text = "You look trough the windown. Holding the bars with your hands.\n" +
 					"The view is ugly. There is nothing but guards, iron and concrete.\n" +
 					"\nYou miss the nature!" +
 					"\n\nPress ENTER to continue";
-		state_cell();
-	}
-	
-	void state_lay_on_bed(){
-		myText.text = "Your sheets are disgusting. How can a human beeing sleep in this?\n" +
-					  "You feel tired. And decide to lay on the upper bed." +
-					  "\n\nThe structure of the bed start to ramble.\nIt seems like it is going to fall." +
-				 	  "\n\nPress ENTER to continue";
-			
-		if(Input.GetKeyDown(KeyCode.Return)) 
-			currentStatus = Status.fall_bed;
-	}
-	
-	void state_fall_bed(){		
-		myText.text = "You climbed on it. With much noise beeing made by the bed structure." +
-					"\n\nThe whole thing is falling apart!\n The bed breakes. You and hit the head on the ground\n" +
-					"The world turns black. You passed out.\n" +
-					"\n\nPress ENTER to continue";
-		if(Input.GetKeyDown(KeyCode.Return))	
-			currentStatus = Status.unconcious;
 		
+		if(Input.GetKeyDown(KeyCode.Return))
+			currentStatus = Status.locked_cell;	
 	}
 	
-	void state_unconcious(){
-		myText.text = "Bruce: - You have quite a hard head. It even gnashed the ground!!!\n" +
-				"You: - What? It cant be possible. I feel fine. Hope that it is all good with my head.\n" +
-				"\nBruce: - Let's check on this ground. Can you help me?\n\n\n" +
-				"Press 'Y' to help Bruce. 'ENTER' to rest";
-		if(Input.GetKeyDown(KeyCode.Y)){
-			currentStatus = Status.ground_0;
+	void state_bed_action(){
+		myText.text = "Your sheets are disgusting. How can a human beeing sleep in this?\n" +
+					  "You feel tired. And decide to lay even if the sheets are dirtier than the deans moral.\n\n" +
+					  "Press 'S' to sleep. 'U' to get up again.";
+			
+		if(Input.GetKeyDown(KeyCode.S)) 
+			currentStatus = Status.b_sleep;
+		else if(Input.GetKeyDown(KeyCode.U))
+			currentStatus = Status.locked_cell;
+	}
+	
+	void state_bed_sleep_action(){
+		myText.text = "You are feeling like there is nothing better to do with your time." +
+					  "Taking a nap is the best option that you have. Even in these sheets. \nSleeping is sleeping." +
+					  "\n\n...6 hours later...\nYou wake up feeling alive.\n Press 'M' to sleep more. 'U' to get up";
+		if(Input.GetKeyDown(KeyCode.M)){ 
+			myText.text = "You close your eyes again for two more hours. Your body can't stand one more minute on this bed.
+						  "You get up\n\n Press 'U' to continue;
 		}
-		else if(Input.GetKeyDown(KeyCode.Return)){
-			currentStatus = Status.cell_0;
+		else if(Input.GetKeyDown(KeyCode.U)){
+			currentStatus = Status.locked_cell;
 		}
 	}
 	void state_break_ground(){
