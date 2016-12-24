@@ -5,13 +5,12 @@ using UnityEngine.UI;
 public class TextController : MonoBehaviour {
 	
 	public Text myText;
-	public enum Status {cell_0, bed, bed_1, window, mirror, mirror_1, unconcious, ground_0, ground_1, tunnel, book, Bruce_0, lock_0,fall_bed, freedom};
+	public enum Status {cell_0, bed, b_lay, b_sleep, window, mirror, library, l_guard, l_book, l_key, freedom};
+	
 	public Status currentStatus;
 	
 	// Use this for initialization
 	void Start () {
-		myText.text = "Welcome to Escape the prison\n" +
-			"\nPress ENTER to continue";	
 	}
 	
 	// Update is called once per frame
@@ -20,36 +19,26 @@ public class TextController : MonoBehaviour {
 			case Status.cell_0:
 				state_cell();
 				break;
-			case Status.Bruce_0:
-				state_talk_bruce();
-				break;
 			case Status.window:
-				state_look_window();
+				state_window_action();
 				break;
 			case Status.bed:
-				state_lay_on_bed();
+				state_bed_action();
 				break;
-			case Status.unconcious:
-				print ("dksjadlka");
-				state_unconcious();
+			case Status.mirror():
+				state_mirror_action();
 				break;
-			case Status.fall_bed:
-				state_fall_bed();
+			case Status.library();
+				state_library_action();
 				break;
-			case Status.ground_0:
-				state_break_ground();
+			case Status.l_book:
+				state_book_action();
 				break;
-			case Status.ground_1:
-				state_open_tunnel();
+			case Status.l_key:
+				state_key_action();
 				break;
-			case Status.tunnel:
-				state_scaping_tunnel();
-				break;
-			case Status.freedom:
-				state_freedom();
-				break;
-			case Status.lock_0:
-				state_check_lock();
+			case Status.l_guard:
+				state_guard_action();
 				break;
 		}
 	}
@@ -57,24 +46,21 @@ public class TextController : MonoBehaviour {
 	void state_cell(){
 		currentStatus = Status.cell_0;			  
 		
-		if(Input.GetKeyDown(KeyCode.Return)){
-			myText.text = "You are locked in your cell with Bruce, your inmate. There is nothing but hope to be free.\n\n" +
-						  "Press 'T' to talk with Bruce.\n" +
-						  "'W' to look trough the window.\n" + 
-						  "'B' to lay on bed.\n" +
-						  "'L' check at the lock.\n" + 
-						  "'R' to inspect the book.";
-		}
-		if(Input.GetKeyDown(KeyCode.T))
-			currentStatus = Status.Bruce_0;
+		myText.text = "You are locked in your cell. Reading and thinking about freedom are the only thing that keeps you alive.\n" +
+					  "After a couple of years, you and the guards have quite a good relashionship.\n" +
+					  "Press 'B' to lay in bed.\n" +
+					  "'W' to look trough the window.\n" + 
+					  "'M' to look at the mirror.\n" +
+					  "'L' request a new book from library.\n";
+					  
+		if(Input.GetKeyDown(KeyCode.B))
+			currentStatus = Status.bed;
 		else if(Input.GetKeyDown(KeyCode.W))
 			currentStatus = Status.window;
-		else if(Input.GetKeyDown(KeyCode.B))
-			currentStatus = Status.bed;
+		else if(Input.GetKeyDown(KeyCode.M))
+			currentStatus = Status.mirror;
 		else if(Input.GetKeyDown(KeyCode.L))
-			currentStatus = Status.lock_0;
-		else if(Input.GetKeyDown(KeyCode.R))
-			currentStatus = Status.book;
+			currentStatus = Status.library;
 	}
 	
 	void state_talk_bruce(){
