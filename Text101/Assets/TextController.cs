@@ -122,21 +122,12 @@ public class TextController : MonoBehaviour {
 			currentStatus = Status.l_help_guard;
 		else if(Input.GetKeyDown(KeyCode.K))
 			currentStatus = Status.l_key;
+	}
 	
-	}
+	//TODO Finish library actions, library keys, library help guard, and hide key on book;
+	
 	void state_freedom(){
-		myText.text = "After two hours of dragging yourselves trough the hole. He finally yeals:\n\n" +
-			"Bruce: - I'm seeing a FUCKING LIGHT HAHAHAHA\n\n"+
-				"And then, suddently, the tunnel ends. And you find freedom in the forest.\n\n\n" +
-				"Bruce: - Thats it my friend. We are free!! Let's run to scape.";
-	}
-	void state_check_lock(){
-		myText.text = "This lock seems so difficult to open. Bruce has already" +
-					"Tried to hijack it. With no Success. \n\n You try it yourself." +
-					"You check inside the hole. There is some rust in it.\n\n" +
-					"You force it to open!\n Nothing happens." +
-					"\n\nPress ENTER to continue";
-		state_cell();
+		myText.text = "";
 	}
 	
 }
