@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class TextController : MonoBehaviour {
 	
 	public Text myText;
-	public enum Status {locked_cell, bed, b_sleep, window, mirror, library, l_guard, l_book, l_key, freedom};
+	public enum Status {locked_cell, bed, b_sleep, window, mirror, library, l_guard, l_book, l_key, l_help_guard, freedom};
 	
 	public Status currentStatus;
 	
@@ -31,7 +31,7 @@ public class TextController : MonoBehaviour {
 			case Status.mirror:
 				state_mirror_action();
 				break;
-			case Status.library():
+			case Status.library:
 				state_library_action();
 				break;
 			case Status.l_book:
@@ -66,16 +66,6 @@ public class TextController : MonoBehaviour {
 			currentStatus = Status.library;
 	}
 	
-	void state_window_action(){
-		myText.text = "You look trough the windown. Holding the bars with your hands.\n" +
-					"The view is ugly. There is nothing but guards, iron and concrete.\n" +
-					"\nYou miss the nature!" +
-					"\n\nPress ENTER to continue";
-		
-		if(Input.GetKeyDown(KeyCode.Return))
-			currentStatus = Status.locked_cell;	
-	}
-	
 	void state_bed_action(){
 		myText.text = "Your sheets are disgusting. How can a human beeing sleep in this?\n" +
 					  "You feel tired. And decide to lay even if the sheets are dirtier than the deans moral.\n\n" +
@@ -92,37 +82,48 @@ public class TextController : MonoBehaviour {
 					  "Taking a nap is the best option that you have. Even in these sheets. \nSleeping is sleeping." +
 					  "\n\n...6 hours later...\nYou wake up feeling alive.\n Press 'M' to sleep more. 'U' to get up";
 		if(Input.GetKeyDown(KeyCode.M)){ 
-			myText.text = "You close your eyes again for two more hours. Your body can't stand one more minute on this bed.
-						  "You get up\n\n Press 'U' to continue;
+			myText.text = "You close your eyes again for two more hours.\n Your body can't stand one more minute on this bed." +
+						  "You get up.\n\n Press 'U' to continue";
 		}
 		else if(Input.GetKeyDown(KeyCode.U)){
 			currentStatus = Status.locked_cell;
 		}
 	}
-	void state_break_ground(){
-		myText.text = "Bruce: - It seems like this gnash is hollow. Maybe whe could break it to check on it" + 
-				"Can you pass me something to smash it?" +
-				"\n\nPress 'B' to pick a metal bar from crashed bed";
-		if(Input.GetKeyDown(KeyCode.B)){
-			currentStatus = Status.ground_1;
-		}
-	}
-	void state_open_tunnel(){
-		myText.text = "After opening the groud. Bruce finds a kind of tunnel.\n" + 
-				"It must have been digged before by someone trying to escape! Those lazy pigs only have only tap the top of it" +
-				"I'm going in! \nLets find out where it leads\n\n Press E to enter in the tunnel.";
-		if(Input.GetKeyDown(KeyCode.E)){		
-			currentStatus = Status.tunnel;
-		}
-	}
-	void state_scaping_tunnel(){
-		myText.text = "You are in the tunnel.\n Following Bruce in this stinky and dark path.\n\n\n"+
-			"Press enter to continue";
-		if(Input.GetKeyDown(KeyCode.Return)){		
-			currentStatus = Status.freedom;
-		}
+	
+	void state_mirror_action(){
+		myText.text = "You look at yourself at the mirror. The beard is longer than you have ever kept it.\n" +
+					  "Like a lumberjack beard, the slyte is definitly remarkable." +
+					  "Press 'ENTER' to return roaming in your cell";
+		if(Input.GetKeyDown(KeyCode.Return))
+			currentStatus = Status.locked_cell;						  	
 	}
 	
+	void state_window_action(){
+		myText.text = "You look trough the windown. Holding the bars with your hands.\n" +
+			"The view is ugly. There is nothing but guards, iron and concrete.\n" +
+				"\nYou miss the nature!" +
+				"\n\nPress ENTER to continue";
+		
+		if(Input.GetKeyDown(KeyCode.Return))
+			currentStatus = Status.locked_cell;	
+	}
+	void state_library_action(){
+		myText.text = "After reading 'Thus spoke Zarastrusta', the unique book, you are on the hunt for another great book as it.\n" +
+					  "Since Bruce, the guard, is a ambicious reader, just like you, he decides to take you to the library, in order to find a new book to read" +
+					  "It is against the rules. But you are the most calm inmate on there, and the prison also has many other guards. It is impossible to break trough." +
+					  "\n\nPress ENTER to continue";
+		if(Input.GetKeyDown(KeyCode.Return))
+			currentStatus = Status.l_book;
+	}
+	void state_library_action(){
+		myText.text = "TODO";
+		
+		if(Input.GetKeyDown(KeyCode.G))
+			currentStatus = Status.l_help_guard;
+		else if(Input.GetKeyDown(KeyCode.K))
+			currentStatus = Status.l_key;
+	
+	}
 	void state_freedom(){
 		myText.text = "After two hours of dragging yourselves trough the hole. He finally yeals:\n\n" +
 			"Bruce: - I'm seeing a FUCKING LIGHT HAHAHAHA\n\n"+
