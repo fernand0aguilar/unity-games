@@ -26,66 +26,66 @@ public class TextController : MonoBehaviour {
 	void Update () {
 		switch(currentStatus){
 			case Status.locked_cell:
-				state_cell();
+				cell();
 				break;
 			case Status.bed:
-				state_bed_action();
+				bed_action();
 				break;
 			case Status.b_sleep:
-				state_bed_sleep_action();
+				bed_sleep_action();
 				break;
 			case Status.b_sleep_1:
-				state_bed_sleep_1_action();
+				bed_sleep_1_action();
 				break;
 			case Status.window:
-				state_window_action();
+				window_action();
 				break;
 			case Status.mirror:
-				state_mirror_action();
+				mirror_action();
 				break;
 			case Status.library:
-				state_library_action();
+				library_action();
 				break;
 			case Status.l_book:
-				state_book_action();
+				book_action();
 				break;
 			case Status.l_key:
-				state_key_action();
+				key_action();
 				break;
 			case Status.l_help_guard:
-				state_help_guard_action();
+				help_guard_action();
 				break;
 			case Status.favor_0:
-				state_ask_favor();
+				ask_favor();
 				break;
 			case Status.f_john:
-				state_ask_john();
+				ask_john();
 				break;
 			case Status.f_taylor:
-				state_ask_taylor();
+				ask_taylor();
 				break;
 			case Status.f_bruce:
-				state_ask_bruce();
+				ask_bruce();
 				break;
 			case Status.bruce_1:
-				state_bruce_help();
+				bruce_help();
 				break;
 			case Status.taylor_1:
-				state_taylor_chantage();
+				taylor_chantage();
 				break;
 			case Status.get_book:
-				state_get_book();
+				get_book();
 				break;
 			case Status.escape:
-				state_escape();
+				escape();
 				break;
 			case Status.freedom:
-				state_freedom();
+				freedom();
 				break;
 		}
 	}
 	
-	void state_cell(){
+	void cell(){
 		currentStatus = Status.locked_cell;			  
 		
 		myText.text = "You are locked in your cell. Reading and thinking about freedom are the only thing that keeps you alive.\n" +
@@ -105,7 +105,7 @@ public class TextController : MonoBehaviour {
 			currentStatus = Status.library;
 	}
 	
-	void state_bed_action(){
+	void bed_action(){
 		myText.text = "Your sheets are disgusting. \nHow can a human beeing sleep in this!?\n" +
 					  "You feel tired. And decide to lay down.\nEven if the sheets are dirtier than the deans moral.\n\n" +
 					  "Press 'S' to sleep. 'U' to get up again.";
@@ -116,7 +116,7 @@ public class TextController : MonoBehaviour {
 			currentStatus = Status.locked_cell;
 	}
 	
-	void state_bed_sleep_action(){
+	void bed_sleep_action(){
 		myText.text = "You are feeling like there is nothing better to do with your time." +
 					  "Taking a nap is the best option that you have. Even in these sheets. \nSleeping is sleeping." +
 					  "\n\n...6 hours later...\nYou wake up feeling alive.\n Press 'M' to sleep more. 'U' to get up";
@@ -129,7 +129,7 @@ public class TextController : MonoBehaviour {
 		}
 	}
 	
-	void state_bed_sleep_1_action(){
+	void bed_sleep_1_action(){
 		myText.text = 	"You close your eyes again for two more hours.\n Your body can't stand one more minute on this bed." +
 						"You get up.\n\n Press 'U' to continue";
 		
@@ -138,7 +138,7 @@ public class TextController : MonoBehaviour {
 		}
 	}
 	
-	void state_mirror_action(){
+	void mirror_action(){
 		myText.text = "You look at yourself trough the mirror.\n\nThe beard is longer than you have ever kept it.\n" +
 					  "Like a lumberjack beard, the style is definitely remarkable.\n\n" +
 					  "Press 'ENTER' to return roaming in your cell";
@@ -147,7 +147,7 @@ public class TextController : MonoBehaviour {
 			currentStatus = Status.locked_cell;						  	
 	}
 	
-	void state_window_action(){
+	void window_action(){
 		myText.text = 	"You look trough the windown holding the bars with your hands.\n\n" +
 						"The view is ugly.\n There is nothing but guards, iron and concrete.\n" +
 						"\nYou miss the nature!" +
@@ -157,7 +157,7 @@ public class TextController : MonoBehaviour {
 			currentStatus = Status.locked_cell;	
 	}
 	
-	void state_library_action(){
+	void library_action(){
 		if (key_on_book == false){
 		
 			myText.text = "After reading 'Thus spoke Zarastrusta', the unique book as it is, you request another great book.\n\n" +
@@ -184,7 +184,7 @@ public class TextController : MonoBehaviour {
 		}
 	}
 	
-	void state_book_action(){
+	void book_action(){
 		myText.text = 	"You two get at the library and are talking about books and authors.\nIn a moment of pure 'what the fuck'," +
 						"Bruce fall on the ground. Completly blacked out. You think what the hell just happened, but then think also on the opportunities.\n" +
 						"Since he just felt down blacked out, you have a few moments alone with his body, and with his tools... It is time to act and be free.\n" +
@@ -198,7 +198,7 @@ public class TextController : MonoBehaviour {
 			currentStatus = Status.l_key;
 	}
 	
-	void state_key_action(){
+	void key_action(){
 		key_on_book = true;
 		
 		myText.text = 	"You pick only your cell number key out of the set of keys in his pocket.\n" +
@@ -210,7 +210,7 @@ public class TextController : MonoBehaviour {
 			currentStatus = Status.l_help_guard;		
 	}
 	
-	void state_help_guard_action(){
+	void help_guard_action(){
 		if (key_on_book == true){
 			myText.text = 	" You help the guard by massaging him. His heart is back on beating.\n\n" +
 							"By some sort of miracle, he is okay and did not noticed the key missing.\n\n" +
@@ -229,8 +229,33 @@ public class TextController : MonoBehaviour {
 		}
 	}
 	
-	void state_freedom(){
+	void freedom(){
 		myText.text = "YOu use the key and find freedom congrats";
 	}
 	
+	void ask_favor(){
+	
+	}
+	
+	void ask_john(){
+	
+	}
+	void ask_taylor(){
+	
+	}
+	void ask_bruce(){
+	
+	}
+	void bruce_help(){
+	
+	}
+	void taylor_chantage(){
+	
+	}
+	void get_book(){
+	
+	}
+	void escape(){
+	
+	}
 }
