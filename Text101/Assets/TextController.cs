@@ -56,7 +56,7 @@ public class TextController : MonoBehaviour {
 				help_guard_action();
 				break;
 			case Status.favor_0:
-				ask_favor();
+				ask_favor_0();
 				break;
 			case Status.f_john:
 				ask_john();
@@ -88,7 +88,7 @@ public class TextController : MonoBehaviour {
 	void cell(){
 		currentStatus = Status.locked_cell;			  
 		
-		myText.text = "You are locked in your cell. Reading and thinking about freedom are the only thing that keeps you alive.\n" +
+		myText.text = "You are locked in your cell.\n\n Reading and thinking about freedom are the only thing that keeps you alive.\n" +
 					  "After a couple of years, the guards actually respect you.\n\n" +
 					  "Press 'B' to lay in bed.\n" +
 					  "'W' to look trough the window.\n" + 
@@ -106,7 +106,7 @@ public class TextController : MonoBehaviour {
 	}
 	
 	void bed_action(){
-		myText.text = "Your sheets are disgusting. \nHow can a human beeing sleep in this!?\n" +
+		myText.text = "Your sheets are disgusting.\nHow can a human beeing sleep in this!?\n\n" +
 					  "You feel tired. And decide to lay down.\nEven if the sheets are dirtier than the deans moral.\n\n" +
 					  "Press 'S' to sleep. 'U' to get up again.";
 			
@@ -117,9 +117,9 @@ public class TextController : MonoBehaviour {
 	}
 	
 	void bed_sleep_action(){
-		myText.text = "You are feeling like there is nothing better to do with your time." +
-					  "Taking a nap is the best option that you have. Even in these sheets. \nSleeping is sleeping." +
-					  "\n\n...6 hours later...\nYou wake up feeling alive.\n Press 'M' to sleep more. 'U' to get up";
+		myText.text = "You are feeling like there is nothing better to do with your time.\n\n" +
+					  "Taking a nap is the best option that you have.\n Even in these sheets. Sleeping is sleeping." +
+					  "\n\n...6 hours later...\nYou wake up feeling alive.\n\n Press 'M' to sleep more. 'U' to get up";
 					  
 		if(Input.GetKeyDown(KeyCode.M)){ 
 			currentStatus = Status.b_sleep_1;
@@ -130,8 +130,8 @@ public class TextController : MonoBehaviour {
 	}
 	
 	void bed_sleep_1_action(){
-		myText.text = 	"You close your eyes again for two more hours.\n Your body can't stand one more minute on this bed." +
-						"You get up.\n\n Press 'U' to continue";
+		myText.text = 	"You close your eyes again for two more hours.\n\n Your body can't stand one more minute on this bed." +
+						"\n\nYou get up.\n\n Press 'U' to continue";
 		
 		if(Input.GetKeyDown(KeyCode.U)){
 			currentStatus = Status.locked_cell;
@@ -170,17 +170,8 @@ public class TextController : MonoBehaviour {
 		}
 		
 		else if (key_on_book == true){
-			
-			myText.text = 	"Great.\n Since the key is in library and you don't have access to it. You now have to ask a favor.\n\n" +
-							"Who would you ask for a favor?\n\n"+
-							"Press 'J' to ask inmate John\n"+
-							"Press 'T' to as inmate Taylor"+
-							"Press 'B' to ask the guard Bruce";
-			
-			if(Input.GetKeyDown(KeyCode.J))
-				currentStatus = Status.freedom;
-			
-			
+		
+			currentStatus = Status.favor_0;
 		}
 	}
 	
@@ -206,8 +197,7 @@ public class TextController : MonoBehaviour {
 						"You put the book on the shelf, and call for help.\n\n" +
 						"Press 'ENTER' to continue";
 		
-		if(Input.GetKeyDown(KeyCode.Return))
-			currentStatus = Status.l_help_guard;		
+		if(Input.GetKeyDown(KeyCode.Return)) 		{ currentStatus = Status.l_help_guard; }
 	}
 	
 	void help_guard_action(){
@@ -224,25 +214,35 @@ public class TextController : MonoBehaviour {
 							"\n\n Press ENTER to return to your cell and try it again.";
 		}
 		
-		if(Input.GetKeyDown(KeyCode.Return)){
-			currentStatus = Status.locked_cell;
-		}
+		if(Input.GetKeyDown(KeyCode.Return))		{ currentStatus = Status.locked_cell; }
 	}
 	
-	void freedom(){
-		myText.text = "YOu use the key and find freedom congrats";
-	}
-	
-	void ask_favor(){
-	
+	void ask_favor_0(){
+		myText.text = 	"You need someone to get the book and can be trusty.\n\nWho would you ask for a favor?\n\n"+
+						"John - Your closest allied\nTaylor - The book guy.\n\n" +
+						"Press 'J' to ask John\nPress 'T' to ask Taylor";
+		
+		if(Input.GetKeyDown(KeyCode.J))				{ currentStatus = Status.f_john; }
+		
+		else if(Input.GetKeyDown(KeyCode.T))		{ currentStatus = Status.f_taylor; }
 	}
 	
 	void ask_john(){
-	
+		myText.text = 	"John is an allied. He is your closest one.\n\nYou explain the whole history to him, " +
+						"asking for help to get the book.\n\nIn the next month his jailtime ends.\n\n"+
+						"After much dialog. He decides that won't help.\n" +
+						"You are disapointed. But forget him.\n\n" +
+						"Press 'F' to ask for another person";
+						
+		if(Input.GetKeyDown(KeyCode.F)){
+			currentStatus = Status.favor_0;
+		}
 	}
+	
 	void ask_taylor(){
-	
+		myText.text = "TODO";
 	}
+	
 	void ask_bruce(){
 	
 	}
@@ -257,5 +257,9 @@ public class TextController : MonoBehaviour {
 	}
 	void escape(){
 	
+	}
+	
+	void freedom(){
+		myText.text = "YOu use the key and find freedom congrats";
 	}
 }
