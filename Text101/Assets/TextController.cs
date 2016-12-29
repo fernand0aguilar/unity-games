@@ -243,26 +243,44 @@ public class TextController : MonoBehaviour {
 	}
 	
 	void ask_taylor(){
-		myText.text = "TODO";
+		myText.text = "Taylor will only help only if Bruce helps. You need to ask Bruce for a favor. Press 'B' to ask Bruce. 'X' to think on more people.";
+		if(Input.GetKeyDown(KeyCode.B))				{ currentStatus = Status.f_bruce; }
+		
+		else if(Input.GetKeyDown(KeyCode.X))		{ currentStatus = Status.favor_0; }
 	}
 	
 	void ask_bruce(){
-	
+		myText.text = "Bruce owns you one for having saved his life. You ask him for helping Taylor. Press enter to continue.";
+		if(Input.GetKeyDown(KeyCode.Return))		{ currentStatus = Status.bruce_1; }
+		
 	}
 	void bruce_help(){
-	
+		myText.text = "He accepted to help you. Now it is time to return to Taylor. \nPress 'x' to ask him again.";
+		if(Input.GetKeyDown(KeyCode.X))				{ currentStatus = Status.taylor_1; }
+		
 	}
 	void taylor_chantage(){
-	
+		myText.text = "Taylor accepted to bring the book. But only tomorrow. So you wait. \n\n After a long nigh sleeping. It is time. \n Press 'g' to get the book.";
+		if(Input.GetKeyDown(KeyCode.G))				{ currentStatus = Status.get_book; }
+		
 	}
 	void get_book(){
-	
+		myText.text = "You got the book. And the key is still on it. Congratulations. It is time for freedom. Press 'e' to escape";
+		if(Input.GetKeyDown(KeyCode.E))				{ currentStatus = Status.escape; }
+		
 	}
 	void escape(){
-	
+		myText.text = "You decide to escape after midnight, where the guard is smaller. Sou you wait a long day.After dark, it is time to go. Press 'E' To escape. Or 'x' to drop the idea out.";
+		
+		if(Input.GetKeyDown(KeyCode.E))				{ currentStatus = Status.freedom; }
+		
+		else if(Input.GetKeyDown(KeyCode.X))		{ currentStatus = Status.locked_cell; }
 	}
 	
 	void freedom(){
-		myText.text = "YOu use the key and find freedom congrats";
+		myText.text = "YOu use the key and find freedom congrats\n\n\n\nPress 'ENTER' to play again.";
+		if(Input.GetKeyDown(KeyCode.Return))				{ currentStatus = Status.locked_cell; }
+		
 	}
+	#endregion
 }
