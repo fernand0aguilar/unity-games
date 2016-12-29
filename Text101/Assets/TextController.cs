@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class TextController : MonoBehaviour {
-	
+	#region definitions 
 	public Text myText;
 	
 	public enum Status {
@@ -17,6 +17,7 @@ public class TextController : MonoBehaviour {
 	public Status currentStatus;
 	
 	public bool key_on_book = false;
+	#endregion
 	
 	// Use this for initialization
 	void Start () {
@@ -85,6 +86,7 @@ public class TextController : MonoBehaviour {
 		}
 	}
 	
+	#region first layer handler methods
 	void cell(){
 		currentStatus = Status.locked_cell;			  
 		
@@ -216,7 +218,8 @@ public class TextController : MonoBehaviour {
 		
 		if(Input.GetKeyDown(KeyCode.Return))		{ currentStatus = Status.locked_cell; }
 	}
-	
+	#endregion
+	#region second layer state methods
 	void ask_favor_0(){
 		myText.text = 	"You need someone to get the book and can be trusty.\n\nWho would you ask for a favor?\n\n"+
 						"John - Your closest allied\nTaylor - The book guy.\n\n" +
