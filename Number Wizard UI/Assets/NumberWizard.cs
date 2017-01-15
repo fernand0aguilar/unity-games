@@ -19,11 +19,9 @@ public class NumberWizard : MonoBehaviour {
 	void StartGame(){
 		max = 1000;
 		min = 1;
-		guess = 500;
+		guess = Random.Range(min, max+1);
 		
 		numberText.text = guess.ToString();
-		
-		max = max + 1;
 	}
 		
 	public void higherGuess(){
@@ -40,7 +38,7 @@ public class NumberWizard : MonoBehaviour {
 		guess = (max + min) / 2;
 		
 		maxGuessesAllowed++;
-		if(maxGuessesAllowed >= 5){
+		if(maxGuessesAllowed >= 10){
 			Application.LoadLevel("Lose");
 		}
 		
