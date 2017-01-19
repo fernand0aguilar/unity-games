@@ -1,15 +1,16 @@
-### Learning code by making games.
-
-##### Game developing using Unity and C#.
+# Learning code by making games.
+### Game developing using Unity and C#.
+#### Beause Learning is FUN!
 
 0. Number wizard - Text Game
 
-  A number guessing game using binary search.
-  
+  ##### A number guessing game using binary search.
+***
 1. Escape the prison - Text Game
 
-  A introduction to game developing. Where only the motor is built. 
-
+  ##### A introduction to game developing. Where only the motor is built. 
+***
 2. Brick Breaker Ultra Master Blaster - 2D interface
 
-  An not so ordinary brick breaker game
+  ##### An not so ordinary brick breaker game
+***
