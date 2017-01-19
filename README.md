@@ -10,5 +10,6 @@
 
   A introduction to game developing. Where only the motor is built. 
 
-2. todo
+2. Brick Breaker Ultra Master Blaster - 2D interface
 
+  An not so ordinary brick breaker game
