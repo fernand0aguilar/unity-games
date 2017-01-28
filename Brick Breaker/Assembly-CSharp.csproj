@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\LooseCollider.cs" />
      <Compile Include="Assets\Scripts\LevelMananger.cs" />
      <Compile Include="Assets\Scripts\MusicPlayer.cs" />
  <Reference Include="UnityEngine.UI">
