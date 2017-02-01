@@ -3,14 +3,11 @@ using System.Collections;
 
 public class LooseCollider : MonoBehaviour {
 
-	public LevelMananger mananger;
+	private LevelMananger mananger;
 	
 	void OnTriggerEnter2D (Collider2D collider){
-		print ("Passou");
+		mananger = GameObject.FindObjectOfType<LevelMananger>();
+		
 		mananger.LoadLevel("Win");
-	}
-	
-	void OnCollisionEnter2D (Collision2D collision){
-		print ("Colidiu");
 	}
 }
