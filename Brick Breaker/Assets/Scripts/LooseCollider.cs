@@ -8,6 +8,6 @@ public class LooseCollider : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D collider){
 		mananger = GameObject.FindObjectOfType<LevelMananger>();
 		
-		mananger.LoadLevel("Win");
+		mananger.LoadLevel("Loose");
 	}
 }
