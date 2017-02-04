@@ -8,20 +8,17 @@ public class Paddle : MonoBehaviour {
 	}
 
 	void Update () {
-	
-		Vector3 paddlePosition;
+		
+		Vector3 paddlePos;
 		float mousePosInBlocks;
+				
+		paddlePos = new Vector3(0.5f, this.transform.position.y, 0f);
 		
-		paddlePosition = new Vector3(0.5f, this.transform.position.y, 0f);
+		mousePosInBlocks = Input.mousePosition.x / Screen.width * 16;
 		
-		mousePosInBlocks = Input.mousePosition.x / Screen.width * 8;
-	
-		// Set limits to the paddle inside screen (min 0.5 , max 7.5);
+		paddlePos.x = Mathf.Clamp(mousePosInBlocks, 0.5f, 15.5f);
 		
-		paddlePosition.x = Mathf.Clamp(mousePosInBlocks, 0.5f, 7.5f);
-		
-		this.transform.position = paddlePosition;
-		
+		this.transform.position = paddlePos;
 		
 	}
 	
