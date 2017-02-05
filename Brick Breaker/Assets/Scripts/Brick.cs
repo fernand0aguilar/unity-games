@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Brick : MonoBehaviour {
 
-	public int maxHits;
 	private int timesHit;
+	public Sprite[] hitSprites;
 	private LevelMananger level_mananger;
 	
 	// Use this for initialization
@@ -19,13 +19,34 @@ public class Brick : MonoBehaviour {
 	
 	
 	void OnCollisionEnter2D (Collision2D collision){
-		timesHit++;
-		if(timesHit >= maxHits){
-			Destroy(gameObject);
+		bool isBreakable = (this.tag == "Breakable");
+		
+		if (isBreakable){
+			HandleHits();
 		}
 	}
 	
-	// TODO -> Remove this method once win funcionality is maid
+	void HandleHits(){
+		timesHit++;
+		
+		if(timesHit >= hitSprites.Length + 1){
+			Destroy(gameObject);
+		}
+		
+		else{
+			LoadSprites();
+		}
+	}
+	
+	void LoadSprites(){
+		int spriteIndex = timesHit - 1;
+		
+		if(hitSprites[spriteIndex]){
+			this.GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
+		}
+	}
+	
+	
 	void SimulateWin(){
 		level_mananger.LoadNextLevel();
 	}
