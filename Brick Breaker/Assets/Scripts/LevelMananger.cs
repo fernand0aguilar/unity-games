@@ -7,11 +7,19 @@ public class LevelMananger : MonoBehaviour {
 		Application.LoadLevel(name);
 	}
 	
+	public void QuitRequest(){
+		Application.Quit();
+	}
+	
 	public void LoadNextLevel(){
 		Application.LoadLevel(Application.loadedLevel + 1);
 	}
 	
-	public void QuitRequest(){
-		Application.Quit();
+	public void BrickDestroyed(){
+		
+		//Last Brick destroyed
+		if(Brick.breakableCount <= 0){
+			LoadNextLevel();	
+		}
 	}
 }
