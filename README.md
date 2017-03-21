@@ -4,11 +4,11 @@
 
 0. Number wizard - Text Game
 
-  ##### A number guessing game using binary search.
+  ##### A number guessing game using hash and binary search.
 ***
-1. Escape the prison - Text Game
+1. Escape Plan - Text Game
 
-  ##### A introduction to game developing. Where only the motor is built. 
+  ##### A interactive fiction. Player uses text to control and command character to espace the prison cell. 
 ***
 2. Brick Breaker Ultra Master Blaster - 2D interface
 
