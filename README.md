@@ -2,15 +2,17 @@
 ### Game developing using Unity and C#.
 #### Beause Learning is FUN!
 
-0. Number wizard - Text Game
-
-  ##### A number guessing game using binary search.
 ***
-1. Escape the prison - Text Game
+0. ##### Number wizard - Text Game
 
-  ##### A introduction to game developing. Where only the motor is built. 
+   A number guessing game using hash and binary search.
 ***
-2. Brick Breaker Ultra Master Blaster - 2D interface
+1. ##### Escape Plan - Text Game
 
-  ##### An not so ordinary brick breaker game
+   A interactive fiction. Player uses text to control and command the prison espace plan. 
 ***
+2. ##### Brick Breaker Ultra Master Blaster - 2D interface
+
+   An not so ordinary brick breaker game
+***
+3. To be developed
