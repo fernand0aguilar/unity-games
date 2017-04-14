@@ -4,6 +4,9 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 	public float speed = 15.0f;
 	public float padding = 1;
+	public GameObject projectile;
+	public float projectileSpeed;
+	public float firingRate;
 	
 	private float xmax = -5;
 	private float xmin = 5;
@@ -20,8 +23,20 @@ public class PlayerController : MonoBehaviour {
 		xmax = camera.ViewportToWorldPoint(new Vector3(1,0,distance)).x - padding;
 	}
 	
-	// Update is called once per frame
+	
+	void Fire(){
+		GameObject laser = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
+		laser.rigidbody2D.velocity = new Vector3(0, projectileSpeed, 0);
+	}
+	
 	void Update () {
+		if(Input.GetKeyDown(KeyCode.Space)){
+			InvokeRepeating("Fire", 1e-9f, firingRate); 
+		}
+		if(Input.GetKeyUp(KeyCode.Space)){
+			CancelInvoke("Fire");
+		}
+		
 		if(Input.GetKey(KeyCode.LeftArrow)){
 			transform.position = new Vector3(
 				Mathf.Clamp(transform.position.x - speed * Time.deltaTime, xmin, xmax),
