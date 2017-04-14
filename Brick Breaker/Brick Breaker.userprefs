@@ -1,13 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Paddle.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\Laser Defender\Assets\LevelMananger.cs">
     <Files>
-      <File FileName="Assets\Scripts\Brick.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MusicPlayer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Paddle.cs" Line="40" Column="19" />
-      <File FileName="Assets\Scripts\Ball.cs" Line="35" Column="81" />
-      <File FileName="Assets\Scripts\LooseCollider.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LevelMananger.cs" Line="1" Column="1" />
+      <File FileName="..\Laser Defender\Assets\LevelMananger.cs" Line="7" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
